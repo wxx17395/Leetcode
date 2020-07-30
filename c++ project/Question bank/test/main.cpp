@@ -18,17 +18,25 @@ public:
     }
 };
 
-int main(){
-    int a = 1;
-    char* ret = (char *)&a;
+struct TreeNode{
+    int val;
+    TreeNode* left, * right;
+};
 
-    if (*ret == 1)
-    {
-        printf("1");
-    }
-    else
-    {
-        printf("0");
-    }
+int main(){
+    TreeNode* root = new TreeNode();
+    root->val = 0;
+    TreeNode* left = new TreeNode();
+    left->val = 1;
+    TreeNode* right = new TreeNode();
+    right->val = 2;
+    root->left = left;
+    root->right = right;
+    swap(root->left, root->right);
+    cout << root->left->val << endl;
+    cout << root->right->val << endl;
+    delete root;
+    delete left;
+    delete right;
     return 0;
 };
