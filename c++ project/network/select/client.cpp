@@ -27,10 +27,8 @@ int main(){
 	char recv_buf[buffersize];
 
 	SOCKET s_server;
-	SOCKET s_accept;
 
 	sockaddr_in server_addr;
-	sockaddr_in accept_addr;
 
 	server_addr.sin_family = AF_INET;
 	server_addr.sin_port = htons(SERV_PORT);
@@ -41,37 +39,28 @@ int main(){
 		sys_err("socket error");
 	}
 	
-	if (bind(s_server, (sockaddr*)&server_addr, len) == -1){
-		sys_err("bind error");
-	}
+	if (connect(s_server, (sockaddr*) &server_addr, sizeof(sockaddr)) == -1){
+        sys_err("connect error");
+    }
 
-	if (listen(s_server, 128) < 0){
-		sys_err("listen error");
-	}
-
-	s_accept = accept(s_server, (sockaddr*)&accept_addr, (socklen_t*)&len);
-	if (s_accept == -1){
-		sys_err("accept error");
-	}
-
+    cout << "connect succeed" << endl;
 	while (1){
-		recv_len = recv(s_accept, recv_buf, buffersize, 0);
+        cout << "Input send message:";
+		cin >> send_buf;
+		send_len = write(s_server, send_buf, strlen(send_buf));
+		if (send < 0){
+			cout << "send failed!" << endl;
+			break;
+		}
+		recv_len = read(s_server, recv_buf, buffersize);
 		if (recv_len < 0){
 			cout << "receive failed!" << endl;
 			break;
 		} else {
 			cout << "clien message:" << recv_buf << endl; 
 		}
-		cout << "Input response message:";
-		cin >> send_buf;
-		send_len = send(s_accept, send_buf, sizeof(send_buf), 0);
-		if (send < 0){
-			cout << "send failed!" << endl;
-			break;
-		}
 	}
 	
 	close(s_server);
-	close(s_accept);
 	return 0;
 }
