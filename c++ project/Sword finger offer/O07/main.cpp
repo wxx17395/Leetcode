@@ -37,5 +37,5 @@ int main() {
     vector<int> preorder = {3,9,20,15,7};
     vector<int> inorder = {9,3,15,20,7};
     Solution().buildTree(preorder, inorder);
-    return (res * n) % 1000000007;
+    return 0;
 }
