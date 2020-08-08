@@ -38,14 +38,34 @@ public:
 
 class Solution {
     unordered_set<string> us;
+    void backtrace(string s, int x){
+        if (x == s.size() - 1){
+            us.insert(s);
+            return;
+        }
+        unordered_set<char> dic;
+        for (int i = x; i < s.size(); ++i){
+            if (dic.find(s[i]) != dic.end()){
+                continue;
+            }
+            dic.insert(s[i]);
+            swap(s[x], s[i]);
+            backtrace(s, x + 1);
+            swap(s[x], s[i]);
+        }
+    }
 public:
     vector<string> permutation(string s) {
-
+        backtrace(s, 0);
+        return vector<string>(us.begin(), us.end());
     }
 };
 
 int main()
 {
-    Solution().permutation(string("aab"));
+    auto res = Solution().permutation(string("aab"));
+    for (auto n : res){
+        cout << n << endl;
+    }
     return 0;
 }
