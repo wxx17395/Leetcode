@@ -1,13 +1,12 @@
 class Solution(object):
     # Hash表
     def twoSum(self, nums, target):
-        key={}
+        key = {}
         for i,v in enumerate(nums):
             if target-v in key:
                 return [key[target-v],i]
             else:
                 key[v]=i
-
 
     def twoSum1(self, nums, target):
         rlist = []
