@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class Solution {
+/*class Solution {
 public:
     int countSubstrings(string s) {
         if (s.empty()){
@@ -25,6 +25,32 @@ public:
                 }
                 
                 
+            }
+        }
+        return result;
+    }
+};*/
+
+class Solution {
+public:
+    int countSubstrings(string s) {
+        if (s.empty()){
+            return 0;
+        }
+        int n = s.size();
+        int result = n;
+        vector<vector<bool>> dp(n, vector<bool>(n));
+        for (int i = 0; i < n; ++i){
+            dp[i][i] = true;
+        }
+        for (int i = n - 1; i > -1; --i){
+            for (int j = i + 1; j < n; ++j){
+                if (s[i] == s[j]){
+                    dp[i][j] = (j - i == 1) || dp[i + 1][j - 1];
+                }
+                if (dp[i][j]){
+                    ++result;
+                }
             }
         }
         return result;
