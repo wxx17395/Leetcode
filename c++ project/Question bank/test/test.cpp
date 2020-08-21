@@ -1,39 +1,26 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-
-struct A{
-
-   int a;
-
+struct myi{
+   int a, b;
+   myi(int x, int y): a(x), b(y){};
+   bool operator< (const myi c) const{
+      return a + b < c.a + c.b;
+   }
 };
 
-struct B:A{
-
-   int b;
-
-};
-
-struct C: B{
-
-   int c;
-
-};
+ostream& operator<< (ostream &os, const myi &a){
+   os << a.a << a.b << endl;
+   return os;
+}
 
 int main()
 {
-   C c;
-
-   A* a=(A*)&c;
-
-   B* b=(B*)&c;
-
-   if((void * )a == (void *)b){
-      cout << "true" << endl;
-   } else {
-      cout << "false" << endl;
-   }
-   string s;
-   getline(cin, s);
+   myi a1(1,2);
+   myi a2(2,4);
+   myi a3(3,2);
+   cout << max({a1,a2,a3});
+   vector<myi> vec{a1,a2,a3};
+   cout << *max_element(vec.begin(), vec.end());
    return 0;
 }
