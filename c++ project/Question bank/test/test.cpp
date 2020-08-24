@@ -19,6 +19,7 @@ int main()
    myi a1(1,2);
    myi a2(2,4);
    myi a3(3,2);
+   myi* a = new myi(2,2);
    cout << max({a1,a2,a3});
    vector<myi> vec{a1,a2,a3};
    cout << *max_element(vec.begin(), vec.end());
