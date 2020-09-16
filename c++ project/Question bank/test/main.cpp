@@ -41,6 +41,10 @@ public:
 
 int main()
 {
-    
+    int a = 10;
+    int* pa = &a;
+    shared_ptr<int> spa(pa);
+    spa.reset();
+
     return 0;
 }
