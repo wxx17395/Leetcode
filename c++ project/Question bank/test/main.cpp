@@ -1,27 +1,18 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-long long max3(long a, long b, long c){
-    if (a > b && a > c){
-        return a;
+string& genStr(string& s){
+    string ns;
+    int n = 0;
+    while(n < s.length()){
+        ns += string(s[n + 1] - '0', s[n]);
+        n += 2;
     }
-    if (b > a && b > c){
-        return b;
-    }
-    if (c > a && c > b){
-        return c;
-    }
+    return ns;
 }
 
-int main(int argc, char const *argv[])
+int main()
 {
-    long long a, b, c;
-    cin >> a >> b >> c;
-    double na = max3(a + b, b, c);
-    double nb = max3(a, b + c, c);
-    double nc = max3(a, b, b + c);
-    double m = na / (nb + nc);
-    printf("%.2lf", m);
+    
     return 0;
 }
-

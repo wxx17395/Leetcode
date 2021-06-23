@@ -7,8 +7,8 @@ matplotlib.rc("font",family='STSong')
 
 name_list = ['SECP128R1', 'SECP160R1', 'SECP192R1']
 
-plt.xlabel('ECC参数/bits')
-plt.ylabel('计算代价/ms')
+plt.xlabel('ECC Parameters (bits)')
+plt.ylabel('Computation cost(ms)')
 
 He = [10944,10929,16610]
 Jian = [5798,5911,8909]
@@ -36,7 +36,7 @@ for i in range(len(x)):
 bars.append(plt.bar(x, gkk, width=width, label='GKK', tick_label=name_list, fc='purple'))
 for i in range(len(x)):
     x[i] = x[i] + width
-bars.append(plt.bar(x, my, width=width, label='本方案', tick_label=name_list, fc='mediumblue'))
+bars.append(plt.bar(x, my, width=width, label='Our scheme', tick_label=name_list, fc='mediumblue'))
 plt.legend()
 
 #添加数字

@@ -4,8 +4,8 @@ import numpy as np
 name_list = ['SECP128R1', 'SECP160R1', 'SECP192R1']
 
 
-plt.xlabel('ECC参数(bits)')
-plt.ylabel('计算代价(ms)')
+plt.xlabel('ECC Parameters (bits)')
+plt.ylabel('Computation cost(ms)')
 
 He = [10944,10929,16610]
 Jian = [5798,5911,8909]
